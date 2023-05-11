@@ -36,9 +36,6 @@ public class Client {
         System.out.println(divide(10, 5) == 2);
         System.out.println(modulo(10, 5) == 0);
 
-        try(Socket sock = new Socket(host, port)) {
-        }
-
     }
     public static int add(int lhs, int rhs) throws Exception {
         try {
@@ -56,7 +53,7 @@ public class Client {
             root.appendChild(methodName);
 
             Element params = document.createElement("params");
-            methodName.appendChild(params);
+            root.appendChild(params);
 
             for(int i = 0; i < 2; i++) {
                 Element param = document.createElement("param");
@@ -106,7 +103,7 @@ public class Client {
             root.appendChild(methodName);
 
             Element params = document.createElement("params");
-            methodName.appendChild(params);
+            root.appendChild(params);
 
             for(int i = 0; i < processing.length; i++) {
                 Element param = document.createElement("param");
@@ -150,7 +147,7 @@ public class Client {
             root.appendChild(methodName);
 
             Element params = document.createElement("params");
-            methodName.appendChild(params);
+            root.appendChild(params);
 
             for(int i = 0; i < 2; i++) {
                 Element param = document.createElement("param");
@@ -200,7 +197,7 @@ public class Client {
             root.appendChild(methodName);
 
             Element params = document.createElement("params");
-            methodName.appendChild(params);
+            root.appendChild(params);
 
             for(int i = 0; i < 2; i++) {
                 Element param = document.createElement("param");
@@ -250,7 +247,7 @@ public class Client {
             root.appendChild(methodName);
 
             Element params = document.createElement("params");
-            methodName.appendChild(params);
+            root.appendChild(params);
 
             for(int i = 0; i < processing.length; i++) {
                 Element param = document.createElement("param");
@@ -294,7 +291,7 @@ public class Client {
             root.appendChild(methodName);
 
             Element params = document.createElement("params");
-            methodName.appendChild(params);
+            root.appendChild(params);
 
             for(int i = 0; i < 2; i++) {
                 Element param = document.createElement("param");
@@ -344,7 +341,7 @@ public class Client {
             root.appendChild(methodName);
 
             Element params = document.createElement("params");
-            methodName.appendChild(params);
+            root.appendChild(params);
 
             for(int i = 0; i < 2; i++) {
                 Element param = document.createElement("param");
@@ -405,6 +402,7 @@ public class Client {
             //prepare result to parse out
             DocumentBuilderFactory factoryReturn = DocumentBuilderFactory.newInstance();  
             DocumentBuilder builderReturn = factoryReturn.newDocumentBuilder(); 
+            //Document docReturn = builderReturn.parse(new InputSource(new StringReader(responseBody)));
             Document docReturn = builderReturn.newDocument();
             if(response.statusCode() != 404 && response.statusCode() != 405) { 
                 docReturn = builderReturn.parse(new InputSource(new StringReader(responseBody)));
