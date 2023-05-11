@@ -410,7 +410,7 @@ public class Client {
                 docReturn = builderReturn.parse(new InputSource(new StringReader(responseBody)));
             } 
 
-            if(responseBody.contains("faultString") || response.statusCode() != 200) {
+            if(responseBody.contains("faultString") || response.statusCode() == 405 || response.statusCode() == 404) {
                 //throw exception here
                 String error="";
                 // Element root = docReturn.getDocumentElement();

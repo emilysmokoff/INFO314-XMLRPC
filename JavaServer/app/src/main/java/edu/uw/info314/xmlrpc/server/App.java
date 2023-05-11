@@ -128,8 +128,17 @@ public class App {
 
         document.setXmlVersion("1.0");
 
-        Element root = document.createElement("result");
+        Element root = document.createElement("methodResponse");
         document.appendChild(root);
+
+        Element params = document.createElement("params");
+        root.appendChild(params);
+
+        Element param = document.createElement("param");
+        params.appendChild(param);
+
+        Element value = document.createElement("value");
+        param.appendChild(value);
 
         int[] processingNums = new int[args.size()];
         for(int i = 0; i < args.size(); i++) {
@@ -152,32 +161,32 @@ public class App {
 
                     Element i4 = document.createElement("i4");
                     i4.appendChild(document.createTextNode(returnStatement));
-                    root.appendChild(i4);
+                    value.appendChild(i4);
 
                 } else if (name.contains("subtract")) {
                     String returnStatement = String.valueOf(calculator.subtract(processingNums[0], processingNums[1]));
 
                     Element i4 = document.createElement("i4");
                     i4.appendChild(document.createTextNode(returnStatement));
-                    root.appendChild(i4);
+                    value.appendChild(i4);
 
                 } else if (name.contains("divide")) {
                     if(processingNums[1] == 0 ) {
                         //return faultCode of 1 and faultString of "divide by zero"
                         Element faultCode = document.createElement("faultCode");
                         faultCode.appendChild(document.createTextNode("1"));
-                        root.appendChild(faultCode);
+                        value.appendChild(faultCode);
 
                         Element faultString = document.createElement("faultString");
                         faultString.appendChild(document.createTextNode("divide by zero"));
-                        root.appendChild(faultString);
+                        value.appendChild(faultString);
 
                     } else {
                         String returnStatement = String.valueOf(calculator.divide(processingNums[0], processingNums[1]));
 
                         Element i4 = document.createElement("i4");
                         i4.appendChild(document.createTextNode(returnStatement));
-                        root.appendChild(i4);
+                        value.appendChild(i4);
 
                     }
                 } else if (name.contains("multiply")) {
@@ -191,47 +200,47 @@ public class App {
                     
                     Element i4 = document.createElement("i4");
                     i4.appendChild(document.createTextNode(returnStatement));
-                    root.appendChild(i4);
+                    value.appendChild(i4);
 
                 } else if (name.contains("modulo")) {
                     if(processingNums[1] == 0 ) {
                         //return faultCode of 1 and faultString of "divide by zero"
                         Element faultCode = document.createElement("faultCode");
                         faultCode.appendChild(document.createTextNode("1"));
-                        root.appendChild(faultCode);
+                        value.appendChild(faultCode);
 
                         Element faultString = document.createElement("faultString");
                         faultString.appendChild(document.createTextNode("divide by zero"));
-                        root.appendChild(faultString);
+                        value.appendChild(faultString);
 
                     } else {
                         String returnStatement = String.valueOf(calculator.modulo(processingNums[0], processingNums[1]));
 
                         Element i4 = document.createElement("i4");
                         i4.appendChild(document.createTextNode(returnStatement));
-                        root.appendChild(i4);
+                        value.appendChild(i4);
 
                     }
                 }
             } catch (ArithmeticException err) {
                 Element faultCode = document.createElement("faultCode");
                 faultCode.appendChild(document.createTextNode("4"));
-                root.appendChild(faultCode);
+                value.appendChild(faultCode);
 
                 Element faultString = document.createElement("faultString");
                 faultString.appendChild(document.createTextNode("overflow error"));
-                root.appendChild(faultString);
+                value.appendChild(faultString);
             }
             
         } else {
             //return a faultCode of 3 and a faultString of "illegal argument type".
             Element faultCode = document.createElement("faultCode");
             faultCode.appendChild(document.createTextNode("3"));
-            root.appendChild(faultCode);
+            value.appendChild(faultCode);
 
             Element faultString = document.createElement("faultString");
             faultString.appendChild(document.createTextNode("illegal argument type"));
-            root.appendChild(faultString);
+            value.appendChild(faultString);
         }
         
         return document;
