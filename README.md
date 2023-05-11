@@ -1,6 +1,9 @@
 # INFO314-XMLRPC
 A homework assignment for my INFO314 course.
 
+I ran my client against Audrey's Server and it worked.
+Nancy ran her client against my Server and it worked.
+
 ## Goal
 You must build a client and server for a calculator application using the XML-RPC "standard". You are free to do this in Java, Python, or any other language you prefer, but it must follow the structure and format dictated by the XML-RPC website.
 
